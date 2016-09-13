@@ -21,6 +21,7 @@ import test.study.appshelltest.utils.LogUtil;
 public class TabFirstFragment extends Fragment {
     private SwipeRefreshLayout swipeRefreshLayout;
     private Button btn_getrecentmovie;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -48,25 +49,59 @@ public class TabFirstFragment extends Fragment {
 
         btn_getrecentmovie = (Button) view.findViewById(R.id.get_recent_movie);
         btn_getrecentmovie.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               MovieInfoServer.getRecentMovies(new Subscriber<String>() {
-                   @Override
-                   public void onCompleted() {
-                       LogUtil.HDLog("onCompleted");
-                   }
+            @Override
+            public void onClick(View v) {
+                MovieInfoServer.getRecentMovies(new Subscriber<String>() {
+                    @Override
+                    public void onCompleted() {
+                        LogUtil.HDLog("getRecentMovies onCompleted");
+                    }
 
-                   @Override
-                   public void onError(Throwable e) {
-                       LogUtil.HDLog("onError" + e.getMessage());
-                   }
+                    @Override
+                    public void onError(Throwable e) {
+                        LogUtil.HDLog("getRecentMovies onError" + e.getMessage());
+                    }
 
-                   @Override
-                   public void onNext(String s) {
-                       LogUtil.HDLog("onNext 获取最新电影： " + s);
-                   }
-               });
-           }
+                    @Override
+                    public void onNext(String s) {
+                        LogUtil.HDLog("getRecentMovies onNext 获取最新电影： " + s);
+                    }
+                });
+
+                MovieInfoServer.SearchMovies(new Subscriber<String>() {
+                    @Override
+                    public void onCompleted() {
+                        LogUtil.HDLog("SearchMovies onCompleted");
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        LogUtil.HDLog("SearchMovies onError  " + e.getMessage());
+                    }
+
+                    @Override
+                    public void onNext(String s) {
+                        LogUtil.HDLog("SearchMovies onNext  " + s);
+                    }
+                });
+
+                MovieInfoServer.getMoviesRank(new Subscriber<String>() {
+                    @Override
+                    public void onCompleted() {
+                        LogUtil.HDLog("getMoviesRank onCompleted");
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        LogUtil.HDLog("getMoviesRank onError  " + e.getMessage());
+                    }
+
+                    @Override
+                    public void onNext(String s) {
+                        LogUtil.HDLog("getMoviesRank onNext  " + s);
+                    }
+                });
+            }
         });
         return view;
     }

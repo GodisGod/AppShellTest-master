@@ -1,11 +1,11 @@
-package test.study.appshelltest;
+package test.study.appshelltest.Bean;
 
 import java.util.List;
 
 /**
  * Created by 李鸿达 on 2016/9/13.
  */
-public class RecentMovieBean {
+public class SearchMoviesBean {
 
     /**
      * reason : 查询成功

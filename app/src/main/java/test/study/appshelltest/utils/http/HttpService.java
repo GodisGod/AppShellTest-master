@@ -95,10 +95,12 @@ public interface HttpService {
 
 
     //1.影视搜索
-
+    @GET("video")
+    Observable<String> SearchMovies(@QueryMap Map<String, String> map);
     //2.最近影讯
     @GET("pmovie?")
-    Observable<String> getRelatedMovies(@QueryMap Map<String, String> map);
+    Observable<String> getRecentMovies(@QueryMap Map<String, String> map);
     //3.最新票房榜
-
+    @GET("rank.php?")
+    Observable<String> getMoviesRank(@QueryMap Map<String, String> map);
 }
