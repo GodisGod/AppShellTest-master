@@ -104,3 +104,4 @@ public interface HttpService {
     @GET("rank.php?")
     Observable<String> getMoviesRank(@QueryMap Map<String, String> map);
 }
+//http://v.juhe.cn/boxoffice/rank?key=7080334373d1f2dee5c9c3c2cbb30e9a&area=CN

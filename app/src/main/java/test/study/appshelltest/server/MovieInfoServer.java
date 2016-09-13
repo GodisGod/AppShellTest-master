@@ -40,7 +40,7 @@ public class MovieInfoServer {
     public static void getMoviesRank(Subscriber<String> subscriber) {
         String host = "http://v.juhe.cn/boxoffice/";
         HashMap<String, String> map = new HashMap<String, String>();
-        map.put("key", APP.getContext().getResources().getString(R.string.getmovierank));
+        map.put("key", APP.getContext().getResources().getString(R.string.getmovierankkey));
         map.put("area", "CN");
         HttpManager.getInstance(host).doHttpRequest(
                 HttpManager.getInstance(host).getHttpService().getMoviesRank(map)
