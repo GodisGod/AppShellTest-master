@@ -85,22 +85,7 @@ public class TabFirstFragment extends Fragment {
                     }
                 });
 
-                MovieInfoServer.getMoviesRank(new Subscriber<String>() {
-                    @Override
-                    public void onCompleted() {
-                        LogUtil.HDLog("getMoviesRank onCompleted");
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        LogUtil.HDLog("getMoviesRank onError  " + e.getMessage());
-                    }
-
-                    @Override
-                    public void onNext(String s) {
-                        LogUtil.HDLog("getMoviesRank onNext  " + s);
-                    }
-                });
+                MovieInfoServer.getMoviesRank();
             }
         });
         return view;
