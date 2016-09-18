@@ -1,11 +1,13 @@
 package test.study.appshelltest.Bean;
 
+import android.databinding.BaseObservable;
+
 import java.util.List;
 
 /**
  * Created by 李鸿达 on 2016/9/13.
  */
-public class MoviesRankBean {
+public class MoviesRankBean extends BaseObservable{
 
     /**
      * resultcode : 200
