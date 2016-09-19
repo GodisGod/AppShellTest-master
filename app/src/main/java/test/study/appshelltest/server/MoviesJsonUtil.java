@@ -23,52 +23,62 @@ public class MoviesJsonUtil {
 
             //获取正在上映
             JSONObject ShowingObject = (JSONObject) dataarry.get(0);
-            //1、获取导演信息
-            JSONObject DirectorObject = ShowingObject.getJSONObject("director").getJSONObject("data")
-                    .getJSONObject("1");
-            //获取导演名字
-            String director_name = DirectorObject.getString("name");
-            String director_url = DirectorObject.getString("link");
-            //2、获取评分
-            String grade = ShowingObject.getString("grade");
-            //3、获取电影Icon
-            String icon = ShowingObject.getString("iconaddress");
-            //4、获取电影Iconlink
-            String icon_linkUrl = ShowingObject.getString("iconlinkUrl");
-            //5、选座购票，剧照海报、热门影评
-            JSONArray moreObject = ShowingObject.getJSONObject("more").getJSONArray("data");
-            String ChooseTicket = ((JSONObject) moreObject.get(0)).getString("link");
-            String Stills = ((JSONObject) moreObject.get(1)).getString("link");
-            String HotComments = ((JSONObject) moreObject.get(2)).getString("link");
-            //6、获取演员 共4个
-            JSONObject StarObject = ShowingObject.getJSONObject("star").getJSONObject("data");
-            String star_1_name = StarObject.getJSONObject("1").getString("name");
-            String star_1_link = StarObject.getJSONObject("1").getString("link");
-            String star_2_name = StarObject.getJSONObject("2").getString("name");
-            String star_2_link = StarObject.getJSONObject("2").getString("link");
-            String star_3_name = StarObject.getJSONObject("3").getString("name");
-            String star_3_link = StarObject.getJSONObject("3").getString("link");
-            String star_4_name = StarObject.getJSONObject("4").getString("name");
-            String star_4_link = StarObject.getJSONObject("4").getString("link");
-            //7、获取上映日期
-            JSONObject PlayDateObject = ShowingObject.getJSONObject("playDate");
-            String play_data1 = PlayDateObject.getString("data");
-            String play_data2 = PlayDateObject.getString("data2");
-            //8、获取故事简介
-            JSONObject StoryObject = ShowingObject.getJSONObject("story").getJSONObject("data");
-            String story_brief = StoryObject.getString("storyBrief");
-            String story_link = StoryObject.getString("storyMoreLink");
-            //9、获取上映电影院数
-            String play_cinemas_count = ShowingObject.getString("subHead");
-            //10、获取电影名字
-            String movie_name = ShowingObject.getString("tvTitle");
-            //11、获取电影类型
-            JSONObject TypeObject = ShowingObject.getJSONObject("type").getJSONObject("data");
-            String type1 = TypeObject.getJSONObject("1").getString("name");
-            String type2 = TypeObject.getJSONObject("2").getString("name");
+            LogUtil.HDLog("ShowingObject  " + ShowingObject.toString());
+            JSONArray ShowingArray = ShowingObject.getJSONArray("data");
+            for (int i = 0; i < ShowingArray.length(); i++) {
+                JSONObject showshow = (JSONObject) ShowingArray.get(i);
+                //1、获取导演信息
+                JSONObject DirectorObject = showshow.getJSONObject("director")
+                        .getJSONObject("data")
+                        .getJSONObject("1");
+                //获取导演名字
+                String director_name = DirectorObject.getString("name");
+                String director_url = DirectorObject.getString("link");
+                //2、获取评分
+                String grade = showshow.getString("grade");
+                //3、获取电影Icon
+                String icon = showshow.getString("iconaddress");
+                //4、获取电影Iconlink
+                String icon_linkUrl = showshow.getString("iconlinkUrl");
+                //5、选座购票，剧照海报、热门影评
+                JSONArray moreObject = showshow.getJSONObject("more").getJSONArray("data");
+                String ChooseTicket = ((JSONObject) moreObject.get(0)).getString("link");
+                String Stills = ((JSONObject) moreObject.get(1)).getString("link");
+                String HotComments = ((JSONObject) moreObject.get(2)).getString("link");
+                //6、获取演员 共4个
+                JSONObject StarObject = showshow.getJSONObject("star").getJSONObject("data");
+                String star_1_name = StarObject.getJSONObject("1").getString("name");
+                String star_1_link = StarObject.getJSONObject("1").getString("link");
+                String star_2_name = StarObject.getJSONObject("2").getString("name");
+                String star_2_link = StarObject.getJSONObject("2").getString("link");
+                String star_3_name = StarObject.getJSONObject("3").getString("name");
+                String star_3_link = StarObject.getJSONObject("3").getString("link");
+                String star_4_name = StarObject.getJSONObject("4").getString("name");
+                String star_4_link = StarObject.getJSONObject("4").getString("link");
+                //7、获取上映日期
+                JSONObject PlayDateObject = showshow.getJSONObject("playDate");
+                String play_data1 = PlayDateObject.getString("data");
+                String play_data2 = PlayDateObject.getString("data2");
+                //8、获取故事简介
+                JSONObject StoryObject = showshow.getJSONObject("story").getJSONObject("data");
+                String story_brief = StoryObject.getString("storyBrief");
+                String story_link = StoryObject.getString("storyMoreLink");
+                //9、获取上映电影院数
+                String play_cinemas_count = showshow.getString("subHead");
+                //10、获取电影名字
+                String movie_name = showshow.getString("tvTitle");
+                //11、获取电影类型
+                JSONObject TypeObject = showshow.getJSONObject("type").getJSONObject("data");
+                String type1 = TypeObject.getJSONObject("1").getString("name");
+                String type2 = TypeObject.getJSONObject("2").getString("name");
 
+                LogUtil.HDLog("解析电影：" +
+                        title + title_url + "\n" +
+                        "" + star_1_name + movie_name + "\n" +
+                        star_2_name + "\n" + play_data1 + "\n" + type1 + "\n" + play_cinemas_count);
+            }
 
-            //获取即将上映
+          /*  //获取即将上映
             JSONObject WillShowingObject = (JSONObject) dataarry.get(1);
             //1、获取导演信息
             JSONObject w_DirectorObject = WillShowingObject.getJSONObject("director").getJSONObject("data")
@@ -109,12 +119,9 @@ public class MoviesJsonUtil {
             String w_movie_name = WillShowingObject.getString("tvTitle");
             //11、获取电影类型
             JSONObject w_TypeObject = WillShowingObject.getJSONObject("type").getJSONObject("data");
-            String w_type1 = TypeObject.getJSONObject("1").getString("name");
+            String w_type1 = w_TypeObject.getJSONObject("1").getString("name");
+*/
 
-            LogUtil.HDLog("解析电影：" +
-                    title + title_url + "\n" +
-                    director_name + star_1_name + movie_name + "\n" +
-                    w_director_name + w_star_1_name + w_movie_name);
 
         } catch (JSONException e) {
             e.printStackTrace();
