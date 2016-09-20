@@ -4,7 +4,6 @@ package test.study.appshelltest.utils.http;
 import java.util.Map;
 
 import okhttp3.RequestBody;
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -103,7 +102,7 @@ public interface HttpService {
     Observable<String> getRecentMovies(@QueryMap Map<String, String> map);
     //3.最新票房榜
     @GET("boxoffice/rank.php?area=CN&dtype=json&key=7080334373d1f2dee5c9c3c2cbb30e9a")
-    Call<ResponseBody> getMoviesRank();
+    Observable<String> getMoviesRank();
 }
 //http://v.juhe.cn/boxoffice/rank?key=7080334373d1f2dee5c9c3c2cbb30e9a&area=CN
 //http://v.juhe.cn/boxoffice/rank.php?key=7080334373d1f2dee5c9c3c2cbb30e9a&area=CN

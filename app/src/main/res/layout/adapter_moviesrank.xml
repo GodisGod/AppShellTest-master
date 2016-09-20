@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data class="AdapterRankBinding">
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/rank_movie_img"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:background="@mipmap/ic_launcher" />
+
+            <ImageView
+                android:id="@+id/rank_movie_rank"
+                android:layout_width="80dp"
+                android:layout_height="80dp" />
+
+            <TextView
+                android:id="@+id/rank_movie_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rank_movie_img"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:text="中国合伙人"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/rank_movie_wktime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rank_movie_img"
+                android:layout_marginLeft="60dp"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@id/rank_movie_name"
+                android:text="2013.5.20-2013.5.26"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/rank_movie_wk_tip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rank_movie_name"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:text="周末票房"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/rank_movie_wk_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/rank_movie_wktime"
+                android:layout_below="@id/rank_movie_wktime"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@id/rank_movie_wk_tip"
+                android:text="￥20900万"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/rank_movie_total_tip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rank_movie_wk_tip"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:text="累计票房"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/rank_movie_total_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/rank_movie_wk_money"
+                android:layout_below="@id/rank_movie_wk_money"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@id/rank_movie_total_tip"
+                android:text="￥31700万"
+                android:textSize="18sp" />
+        </RelativeLayout>
+    </RelativeLayout>
+</layout>
