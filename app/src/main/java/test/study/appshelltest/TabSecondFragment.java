@@ -4,11 +4,14 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import rx.Subscriber;
+import test.study.appshelltest.adapter.ShowingAdapter;
+import test.study.appshelltest.adapter.WillShowAdapter;
 import test.study.appshelltest.databinding.SencondFragBinding;
 import test.study.appshelltest.server.MovieInfoServer;
 import test.study.appshelltest.server.MoviesJsonUtil;
@@ -19,6 +22,8 @@ import test.study.appshelltest.utils.LogUtil;
  */
 public class TabSecondFragment extends Fragment {
     private SencondFragBinding binding;
+    private ShowingAdapter showingAdapter;
+    private WillShowAdapter willShowAdapter;
 
     @Nullable
     @Override
@@ -42,36 +47,23 @@ public class TabSecondFragment extends Fragment {
                     @Override
                     public void onNext(final String s) {
                         LogUtil.HDLog("getRecentMovies onNext 获取最新电影： " + s);
-                       new Thread(new Runnable() {
-                           @Override
-                           public void run() {
-                               LogUtil.HDLog("解析电影： ");
-                               MoviesJsonUtil.analysis(s);
-                           }
-                       }).start();
-                    }
-                });
-            }
-        });
 
-        binding.getWillMovies.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                LogUtil.HDLog("dfadfaf:  ");
-                MovieInfoServer.getRecentMovies(new Subscriber<String>() {
-                    @Override
-                    public void onCompleted() {
+                        MoviesJsonUtil.analysis(s);
 
-                    }
 
-                    @Override
-                    public void onError(Throwable e) {
-
-                    }
-
-                    @Override
-                    public void onNext(String s) {
-                        LogUtil.HDLog("aaaaaaaaaaaaaa:  " + s);
+                        showingAdapter = new ShowingAdapter(Constant.showingBeanList);
+                        willShowAdapter = new WillShowAdapter(Constant.willShowBeanList);
+                        LogUtil.HDLog("==电影L+++"+Constant.showingBeanList.size());
+//                        LinearLayoutManager manager = new LinearLayoutManager(getContext());
+//                        manager.setOrientation(LinearLayoutManager.VERTICAL);
+//                        binding.showingList.setLayoutManager(manager);
+//                        binding.showingList.setHasFixedSize(true);
+//                        binding.showingList.setAdapter(showingAdapter);
+                        LinearLayoutManager manager2 = new LinearLayoutManager(getContext());
+                        manager2.setOrientation(LinearLayoutManager.VERTICAL);
+                        binding.willShowList.setLayoutManager(manager2);
+                        binding.willShowList.setHasFixedSize(true);
+                        binding.willShowList.setAdapter(willShowAdapter);
                     }
                 });
             }

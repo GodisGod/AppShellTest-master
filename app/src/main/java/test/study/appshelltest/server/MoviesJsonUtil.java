@@ -9,6 +9,7 @@ import java.util.List;
 
 import test.study.appshelltest.Bean.ShowingBean;
 import test.study.appshelltest.Bean.WillShowBean;
+import test.study.appshelltest.Constant;
 import test.study.appshelltest.utils.LogUtil;
 
 /**
@@ -209,6 +210,7 @@ public class MoviesJsonUtil {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
+        Constant.showingBeanList = showingBeans;
+        Constant.willShowBeanList = willShowBeans;
     }
 }
