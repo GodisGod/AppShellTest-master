@@ -1,13 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="third"
-        android:textSize="40sp" />
-</LinearLayout>
+    <data class="SearchBinding">
+
+    </data>
+
+   <ScrollView
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:orientation="vertical">
+
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_gravity="center"
+               android:text="搜索电影"
+               android:textSize="40sp" />
+
+           <EditText
+               android:id="@+id/search_name"
+               android:layout_width="match_parent"
+               android:layout_height="50dp" />
+
+           <Button
+               android:id="@+id/start_search"
+               android:layout_width="match_parent"
+               android:layout_height="50dp"
+               android:text="搜索" />
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:orientation="vertical"
+               android:padding="10dp">
+
+               <ImageView
+                   android:id="@+id/search_movie_img"
+                   android:layout_width="250dp"
+                   android:layout_height="250dp"
+                   android:layout_gravity="center_horizontal" />
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:orientation="vertical">
+
+                   <TextView
+                       android:id="@+id/search_movie_name"
+                       android:layout_width="wrap_content"
+                       android:layout_height="match_parent"
+                       android:gravity="center"
+                       android:text="大闹天宫"
+                       android:textSize="20sp" />
+
+                   <TextView
+                       android:id="@+id/search_movie_type"
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:layout_marginTop="2dp"
+                       android:text="电影类型"
+                       android:textSize="17sp" />
+
+               </LinearLayout>
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_marginTop="10dp"
+                   android:orientation="vertical">
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="match_parent"
+                       android:gravity="center"
+                       android:text="主演"
+                       android:textSize="20sp" />
+
+                   <TextView
+                       android:id="@+id/search_star_name"
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:layout_marginTop="2dp"
+                       android:text="邓超 周星驰"
+                       android:textSize="17sp" />
+
+                   <TextView
+                       android:id="@+id/search_star_brief"
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:layout_marginTop="2dp"
+                       android:text="简介"
+                       android:textSize="17sp" />
+
+               </LinearLayout>
+           </LinearLayout>
+       </LinearLayout>
+   </ScrollView>
+</layout>

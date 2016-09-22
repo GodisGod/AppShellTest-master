@@ -13,6 +13,7 @@ import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
 import rx.Observable;
+import test.study.appshelltest.Bean.SearchMoviesBean;
 
 /**
  * Created by marks on 2016/8/5.
@@ -96,7 +97,7 @@ public interface HttpService {
 
     //1.影视搜索
     @GET("video")
-    Observable<String> SearchMovies(@QueryMap Map<String, String> map);
+    Observable<SearchMoviesBean> SearchMovies(@QueryMap Map<String, String> map);
     //2.最近影讯
     @GET("pmovie?")
     Observable<String> getRecentMovies(@QueryMap Map<String, String> map);

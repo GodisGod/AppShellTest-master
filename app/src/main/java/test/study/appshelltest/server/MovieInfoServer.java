@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import rx.Subscriber;
 import test.study.appshelltest.APP;
+import test.study.appshelltest.Bean.SearchMoviesBean;
 import test.study.appshelltest.R;
 import test.study.appshelltest.utils.http.HttpManager;
 
@@ -25,11 +26,11 @@ public class MovieInfoServer {
     }
 
     //2.影视搜索
-    public static void SearchMovies(Subscriber<String> subscriber) {
+    public static void SearchMovies(String movie_name,Subscriber<SearchMoviesBean> subscriber) {
         String host = "http://op.juhe.cn/onebox/movie/";
         HashMap<String, String> map = new HashMap<String, String>();
         map.put("key", APP.getContext().getResources().getString(R.string.getrecentmoviekey));
-        map.put("q", "肖申克");
+        map.put("q", movie_name);
         HttpManager.getInstance(host).doHttpRequest(
                 HttpManager.getInstance(host).getHttpService().SearchMovies(map)
                 , subscriber
