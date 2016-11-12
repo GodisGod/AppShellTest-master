@@ -26,7 +26,7 @@ public class MovieInfoServer {
     }
 
     //2.影视搜索
-    public static void SearchMovies(String movie_name,Subscriber<SearchMoviesBean> subscriber) {
+    public static void getbaidu(String movie_name,Subscriber<SearchMoviesBean> subscriber) {
         String host = "http://op.juhe.cn/onebox/movie/";
         HashMap<String, String> map = new HashMap<String, String>();
         map.put("key", APP.getContext().getResources().getString(R.string.getrecentmoviekey));
@@ -80,4 +80,7 @@ public class MovieInfoServer {
         );
 
     }
+
+
+
 }

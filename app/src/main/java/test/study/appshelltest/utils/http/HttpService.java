@@ -104,6 +104,11 @@ public interface HttpService {
     //3.最新票房榜
     @GET("boxoffice/rank.php?area=CN&dtype=json&key=7080334373d1f2dee5c9c3c2cbb30e9a")
     Observable<String> getMoviesRank();
+
+//    //3.访问百度
+//    @GET("www.baidu.com")
+//    Observable<String> getBaidu();
+
 }
 //http://v.juhe.cn/boxoffice/rank?key=7080334373d1f2dee5c9c3c2cbb30e9a&area=CN
 //http://v.juhe.cn/boxoffice/rank.php?key=7080334373d1f2dee5c9c3c2cbb30e9a&area=CN
