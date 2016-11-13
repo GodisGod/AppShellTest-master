@@ -38,12 +38,12 @@ public class HttpManager {
         this.HOST = host;
         File cacheDirectory = new File(APP.getContext()
                 .getCacheDir().getAbsolutePath(), "HttpCache");
-        OkHttpClient.Builder builder = new OkHttpClient.Builder();
-        builder.connectTimeout(TIMEOUT, TimeUnit.SECONDS);
-        builder.readTimeout(TIMEOUT, TimeUnit.SECONDS);
-        builder.writeTimeout(TIMEOUT, TimeUnit.SECONDS);
-        builder.cache(new Cache(cacheDirectory, 10 * 1024 * 1024));
-        builder.addInterceptor(new Interceptor() {
+        OkHttpClient.Builder okhttpBuilder = new OkHttpClient.Builder();
+        okhttpBuilder.connectTimeout(TIMEOUT, TimeUnit.SECONDS);
+        okhttpBuilder.readTimeout(TIMEOUT, TimeUnit.SECONDS);
+        okhttpBuilder.writeTimeout(TIMEOUT, TimeUnit.SECONDS);
+        okhttpBuilder.cache(new Cache(cacheDirectory, 10 * 1024 * 1024));
+        okhttpBuilder.addInterceptor(new Interceptor() {//拦截器
             @Override
             public Response intercept(Chain chain) throws IOException {
                 Request request = chain.request().newBuilder()
@@ -57,13 +57,13 @@ public class HttpManager {
             }
         });
 
-        Retrofit.Builder rBuilder = new Retrofit.Builder()
-                .client(builder.build())
+        Retrofit.Builder retrofitBuilder = new Retrofit.Builder()
+                .client(okhttpBuilder.build())
                 .addConverterFactory(ScalarsConverterFactory.create())   //http://blog.csdn.net/u013003052/article/details/50992436
                 .addConverterFactory(GsonConverterFactory.create())      //此处顺序不能和上面对调，否则不能同时兼容普通字符串和Json格式字符串
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .baseUrl(getHost());
-        httpService = rBuilder.build().create(HttpService.class);
+        httpService = retrofitBuilder.build().create(HttpService.class);
 
 //        使用Retrofit.Builder对象可以随时调节配置
 //        Retrofit retrofit = new Retrofit.Builder()
@@ -118,11 +118,12 @@ public class HttpManager {
      */
     public void doHttpRequest(Observable pObservable, Subscriber pSubscriber) {
         Observable observable = pObservable
-                .subscribeOn(Schedulers.io())
+                .subscribeOn(Schedulers.io()) //指定subscribe()发生在io调度器（读写文件、读写数据库、网络信息交互等）
                 .unsubscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+                .observeOn(AndroidSchedulers.mainThread()); //指定subscriber的回调发生在主线程
         observable.subscribe(pSubscriber);
     }
+
 
     /**
      * json方式传参
